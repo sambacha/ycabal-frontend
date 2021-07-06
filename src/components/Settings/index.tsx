@@ -4,6 +4,7 @@ import { StyledMenu, StyledMenuButton } from '../StyledMenu'
 import {
   useExpertModeManager,
   useUserArcherUseRelay,
+  useUserManifoldFinanceRelay,
   useUserSingleHopOnly,
   useUserSlippageTolerance,
   useUserTransactionTTL,
@@ -23,6 +24,7 @@ import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 import { useActiveWeb3React } from '../../hooks'
+import { MANIFOLD_FINANCE_SUPPORTED_NETWORKS } from '../../constants'
 
 export default function SettingsTab({ placeholderSlippage }: { placeholderSlippage: Percent }) {
   const { i18n } = useLingui()
@@ -44,6 +46,7 @@ export default function SettingsTab({ placeholderSlippage }: { placeholderSlippa
   const [ttl, setTtl] = useUserTransactionTTL()
 
   const [userUseArcher, setUserUseArcher] = useUserArcherUseRelay()
+  const [userUseManifoldFinance, setUserUseManifoldFinance] = useUserManifoldFinanceRelay()
 
   return (
     <StyledMenu ref={node}>
@@ -144,7 +147,30 @@ export default function SettingsTab({ placeholderSlippage }: { placeholderSlippa
                 <Toggle
                   id="toggle-use-archer"
                   isActive={userUseArcher}
-                  toggle={() => setUserUseArcher(!userUseArcher)}
+                  toggle={() => {
+                    if (userUseManifoldFinance) setUserUseManifoldFinance(false)
+                    setUserUseArcher(!userUseArcher)
+                  }}
+                />
+              </RowBetween>
+            )}
+            {MANIFOLD_FINANCE_SUPPORTED_NETWORKS.includes(chainId) && (
+              <RowBetween>
+                <RowFixed>
+                  <Typography variant="sm" className="text-primary">
+                    {i18n._(t`Manifold Finance`)}
+                  </Typography>
+                  <QuestionHelper
+                    text={i18n._(t`Send transaction privately to avoid front-running and sandwich attacks.`)}
+                  />
+                </RowFixed>
+                <Toggle
+                  id="toggle-use-manifold"
+                  isActive={userUseManifoldFinance}
+                  toggle={() => {
+                    if (userUseArcher) setUserUseArcher(false)
+                    setUserUseManifoldFinance(!userUseManifoldFinance)
+                  }}
                 />
               </RowBetween>
             )}
