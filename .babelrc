@@ -1,4 +1,11 @@
 {
-    "presets": ["next/babel"],
+    "presets": [["next/babel",
+        {
+            "preset-env": {
+              "useBuiltIns": false,
+              "targets": "Chrome >= 90, Safari >= 14.1, iOS >= 14.4, Firefox >= 89, Edge >= 91"
+            }
+          }
+    ]],
     "plugins": ["macros", ["styled-components", { "ssr": true }]]
 }

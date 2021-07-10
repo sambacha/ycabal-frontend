@@ -135,7 +135,6 @@ msgid "Add {0} to MetaMask"
 msgstr ""
 
 #: src/pages/exchange/add/[[...tokens]].tsx:195
-#: src/pages/exchange/add/[[...tokens]].tsx:195
 msgid "Add {0} {1} and {2} {3}"
 msgstr ""
 
@@ -1266,7 +1265,6 @@ msgstr ""
 #~ msgid "Remove send"
 #~ msgstr "Xóa gửi"
 
-#: src/pages/exchange/remove/[[...tokens]].tsx:276
 #: src/pages/exchange/remove/[[...tokens]].tsx:276
 msgid "Remove {0} {1} and {2} {3}"
 msgstr ""
