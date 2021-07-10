@@ -158,7 +158,7 @@ export default function SettingsTab({ placeholderSlippage }: { placeholderSlippa
               <RowBetween>
                 <RowFixed>
                   <Typography variant="sm" className="text-primary">
-                    {i18n._(t`Manifold Finance`)}
+                    {i18n._(t`YCabal`)}
                   </Typography>
                   <QuestionHelper
                     text={i18n._(t`Send transaction privately to avoid front-running and sandwich attacks.`)}
